@@ -9,7 +9,7 @@ var statusSchema = new mongoose.Schema({
         type: { type: String },
         coordinates: [Number],
     },
-     user_name: String // facevook token???
+     user_name: String // facebook token???
 });
 
 // search location
@@ -35,9 +35,8 @@ radiusAroundMe = function(req, res, next) {
 	    });
 };
 
-
-
 //return model
 // tblstatus = table name
+// whoever goes to url: search_users_around_me, goint to "radiusAroundMe"
 module.exports = restful.model('tblstatus',statusSchema).
 	route('search_users_around_me', radiusAroundMe);
