@@ -10,8 +10,7 @@ var statusSchema = new mongoose.Schema({
         coordinates: [Number],
     },
      user_name: String,
-     phone_number: String
-});
+ });
 
 // search location
 statusSchema.index({ "loc": "2dsphere" });
