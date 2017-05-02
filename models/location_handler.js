@@ -9,7 +9,8 @@ var statusSchema = new mongoose.Schema({
         type: { type: String },
         coordinates: [Number],
     },
-     user_name: String // facebook token???
+     user_name: String,
+     phone_number: String
 });
 
 // search location
@@ -34,6 +35,7 @@ radiusAroundMe = function(req, res, next) {
 	        res.json(docs);
 	    });
 };
+
 
 //return model
 // tblstatus = table name
