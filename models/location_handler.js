@@ -5,11 +5,19 @@ var mongoose = restful.mongoose;
 // Schema
 // loc = suppury GEOjson
 var statusSchema = new mongoose.Schema({
-	 loc: {
+	// edited at 05.05.17
+	user_name: String,
+	user_phone: String,
+	user_id: String,
+	time : { 
+		type : Date, 
+		default: Date.now 
+	},
+	// original + user_name: String,
+	loc: {
         type: { type: String },
         coordinates: [Number],
     },
-     user_name: String,
  });
 
 // search location
