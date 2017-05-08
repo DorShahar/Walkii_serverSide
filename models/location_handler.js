@@ -11,12 +11,12 @@ var statusSchema = new mongoose.Schema({
 	user_id: String,
 	time : { 
 		type : Date, 
-		default: Date.now 
+		default: Date.now
 	},
 	// original + user_name: String,
 	loc: {
         type: { type: String },
-        coordinates: [Number],
+        coordinates: [Number]
     },
  });
 
@@ -43,6 +43,7 @@ radiusAroundMe = function(req, res, next) {
 	    });
 };
 
+//distance.find({}).sort()
 
 //return model
 // tblstatus = table name
