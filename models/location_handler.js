@@ -13,16 +13,19 @@ var statusSchema = new mongoose.Schema({
 		type : Date, 
 		default: Date.now
 	},
-	// original + user_name: String,
+	
 	loc: {
         type: { type: String },
         coordinates: [Number]
-    },
+    }, 
  });
 
 // search location
 statusSchema.index({ "loc": "2dsphere" });
+
+//Create a model based on the schema
 distance = mongoose.model('tblstatus', statusSchema);
+
 radiusAroundMe = function(req, res, next) {
 	queryOfDistance = {
 		"loc":{  

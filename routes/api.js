@@ -4,13 +4,15 @@ var router = express.Router();
 
 
 //get models:
-var locationStatus = require('../models/location_handler');
-var userHandler = require('../models/user_handler');
 
-/*
+//post loction of the uers to DB
+var locationStatus = require('../models/location_handler');
+//Register user data when login
+var userHandler = require('../models/user_handler');
+// All the users that want to run now or in X minutes - update the DB
 var isRunning = require('../models/isRunning');
 
-//
+/*
 var pullOf_getRunners = require('../models/getRunners');
 
 //
@@ -21,9 +23,7 @@ var joinRun = require('../models/joinRun');
 // the methods of locationStatus:
 locationStatus.methods(['get', 'post', 'put', 'delete']);
 userHandler.methods(['get', 'post', 'put', 'delete']);
-
-// All the users that want to run now or in X minutes - update the DB
-//isRunning.methods(['get', 'post', 'put', 'delete']);
+isRunning.methods(['get', 'post', 'put', 'delete']);
 
 // return (at First) ALL the runners: phone, name . coordinates . Future: user photo
 //pullOf_getRunners.methods(['get', 'post', 'put', 'delete']);
@@ -32,12 +32,11 @@ userHandler.methods(['get', 'post', 'put', 'delete']);
 //joinRun.methods(['get', 'post', 'put', 'delete']);
 
 // update url :
-//locationStatus
 locationStatus.register(router,'/locationStatus');
-userHandler.register(router,'/userHandler');
-/*
+userHandler.register(router,'/usersAtApp');
 isRunning.register(router,'/isRunning');
 
+/*
 pullOf_getRunners.register(router,'/getRunners');
 
 joinRun.register(router,'/joinRun');
