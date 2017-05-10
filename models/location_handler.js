@@ -5,7 +5,6 @@ var mongoose = restful.mongoose;
 // Schema
 // loc = suppury GEOjson
 var statusSchema = new mongoose.Schema({
-	// edited at 05.05.17
 	user_name: String,
 	user_phone: String,
 	user_id: String,
@@ -46,10 +45,24 @@ radiusAroundMe = function(req, res, next) {
 	    });
 };
 
-//distance.find({}).sort()
+//return the lastes coordinat - find by specific ID
+latestCoordinateOfPerson = function(req,res){
+	distance.find({user_id: req.body.user_id }).
+		sort({time: -1}).limit(1).exec(function(err,docs){			res.json(docs);
+			res.json(docs);
+			})	
+	};
+///////////////////////////
+
 
 //return model
 // tblstatus = table name
 // whoever goes to url: search_users_around_me, goint to "radiusAroundMe"
 module.exports = restful.model('tblstatus',statusSchema).
 	route('search_users_around_me', radiusAroundMe);
+
+
+//////////////
+module.exports = restful.model('tblstatus',statusSchema).
+	route('return_latest_coor', latestCoordinateOfPerson);
+

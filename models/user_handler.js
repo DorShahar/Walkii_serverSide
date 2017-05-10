@@ -15,11 +15,10 @@ userSchema.index({user_id: 1});
 users = mongoose.model('usersAtApp', userSchema);
 
 //return Data
+//*** ask only for id ** return all the document
 returnUsers = function(req, res, next) {
 	query_returnUsers = { 
 		user_id: req.body.user_id ,
-		user_name: req.bodyuser_name ,
-		user_phone: req.bodyuser_phone 
 	};
 
 	// return the json of statusSchema
