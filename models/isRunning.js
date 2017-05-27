@@ -19,7 +19,7 @@ var runnerSchema = new mongoose.Schema({
  });
 
 // search index
-runnerSchema.index({user_id: 1 , isrunning: 1});
+runnerSchema.index({user_id: 1 , isrunning: 1 });
 
 //Create a model based on the schema
 runner = mongoose.model('isRunning', runnerSchema);
@@ -38,7 +38,18 @@ returnRunner_now = function(req, res, next) {
 	    });
 };
 
+//return Specific runner - true
+returnSpecificRunner_now = function(req,res){
+	runner.find({user_id: req.body.user_id , is_running: true }).
+		sort({time : -1}).limit(1).exec(function(err,docs){	
+			if (err) throw err;
+			res.json(docs);
+		})
+};
 
 
 module.exports = restful.model('isrunning',runnerSchema).
 	route('return_isRunning', returnRunner_now);
+
+module.exports = restful.model('isrunning',runnerSchema).
+	route('return_specific_runner_now', returnSpecificRunner_now);

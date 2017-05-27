@@ -9,8 +9,8 @@ var util = require('util');
 mongoose.Promise = global.Promise;
 
 // connect to mongoDB
-//mongoose.connect(util.format('mongodb://%s:%s@ds161400.mlab.com:61400/walkii_db_14042017', process.env.MLAB_USERNAME, process.env.MLAB_PASSWORD));
-mongoose.connect("35.185.184.77:27017");
+mongoose.connect(util.format('mongodb://%s:%s@ds161400.mlab.com:61400/walkii_db_14042017', process.env.MLAB_USERNAME, process.env.MLAB_PASSWORD));
+//mongoose.connect("35.185.184.77:27017");
 
 // express:xxx
 var app = express();

@@ -7,16 +7,19 @@ var mongoose = restful.mongoose;
 var statusSchema = new mongoose.Schema({
 	user_name: String,
 	user_phone: String,
-	user_id: String,
+	// time is: mm/dd/yy hh:mm OR yyyy-mm-ddThh:mm:ss.mmm 
+	//Note: save in GMT (Z = zulu) 
 	time : { 
 		type : Date, 
 		default: Date.now
 	},
 	
 	loc: {
-        type: { type: String },
-        coordinates: [Number]
+        type: { type: String , default:"Point"},
+        coordinates: {type: [Number], default:[0,0]},
+        
     }, 
+    is_running: {type: Boolean, default: false}
  });
 
 // search location
@@ -48,11 +51,10 @@ radiusAroundMe = function(req, res, next) {
 //return the lastes coordinat - find by specific ID
 latestCoordinateOfPerson = function(req,res){
 	distance.find({user_id: req.body.user_id }).
-		sort({time: -1}).limit(1).exec(function(err,docs){			res.json(docs);
+		sort({time: -1}).limit(1).exec(function(err,docs){		
 			res.json(docs);
-			})	
-	};
-///////////////////////////
+		})	
+};
 
 
 //return model
@@ -62,7 +64,7 @@ module.exports = restful.model('tblstatus',statusSchema).
 	route('search_users_around_me', radiusAroundMe);
 
 
-//////////////
+//return model
 module.exports = restful.model('tblstatus',statusSchema).
 	route('return_latest_coor', latestCoordinateOfPerson);
 

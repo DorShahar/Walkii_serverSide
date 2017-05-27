@@ -11,36 +11,23 @@ var locationStatus = require('../models/location_handler');
 var userHandler = require('../models/user_handler');
 // All the users that want to run now or in X minutes - update the DB
 var isRunning = require('../models/isRunning');
-
-/*
-var pullOf_getRunners = require('../models/getRunners');
-
-//
+// when user accept the runn - the users are in the same run
 var joinRun = require('../models/joinRun');
-*/
+
 
 // routes:
 // the methods of locationStatus:
 locationStatus.methods(['get', 'post', 'put', 'delete']);
 userHandler.methods(['get', 'post', 'put', 'delete']);
 isRunning.methods(['get', 'post', 'put', 'delete']);
-
-// return (at First) ALL the runners: phone, name . coordinates . Future: user photo
-//pullOf_getRunners.methods(['get', 'post', 'put', 'delete']);
-
-// when user accept the runn - the users are in the same run
 //joinRun.methods(['get', 'post', 'put', 'delete']);
 
 // update url :
 locationStatus.register(router,'/locationStatus');
 userHandler.register(router,'/usersAtApp');
 isRunning.register(router,'/isRunning');
+//joinRun.register(router,'/joinRun');
 
-/*
-pullOf_getRunners.register(router,'/getRunners');
-
-joinRun.register(router,'/joinRun');
-*/
 
 //return router:
 module.exports = router;
